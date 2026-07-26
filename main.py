@@ -4,15 +4,23 @@ from core.logger import log
 
 banner = """
 ====================================
-            C Y P H E R
+          C Y P H E R // CORE
 ====================================
 
  Version: 0.1.0
  Status: Online
  Mode: Terminal Assistant
 
+ Modules:
+ [✓] Command Handler
+ [✓] Logger
+ [✓] Calculator
+ [✓] System Monitor
+ [✓] File Manager
+
  Type "help" for available commands.
- Enter 'exit' to quit Cypher
+ Enter "exit" to shutdown Cypher
+
 ====================================
 """
 

@@ -1,5 +1,6 @@
 from tools.calculator import calc
 from tools.system import system
+from tools.file_manager import file_manager
 #Command Functions
 
 def help(): 
@@ -9,7 +10,8 @@ def help():
         "help",
         "about",
         "calculator",
-        "system"
+        "system",
+        "files"
         
 
 
@@ -37,7 +39,8 @@ func_dict = {
     "help": help,
     "about": about,
     "calculator": calc,
-    "system": system
+    "system": system,
+    "files": file_manager
     
 
 }
