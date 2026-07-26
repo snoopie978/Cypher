@@ -1,6 +1,7 @@
 from tools.calculator import calc
 from tools.system import system
 from tools.file_manager import file_manager
+from tools.config_manager import show_config, set_config
 #Command Functions
 
 def help(): 
@@ -11,7 +12,8 @@ def help():
         "about",
         "calculator",
         "system",
-        "files"
+        "files",
+        "config"
         
 
 
@@ -28,6 +30,33 @@ def  about():
     print("")
     print("Cypher is gregs personal AI assistant")
 
+def config():
+
+    while True:
+
+        command = input("Cypher Config > ")
+
+        if command == "exit":
+            break
+
+
+        elif command == "show":
+            show_config()
+
+
+        elif command.startswith("set "):
+
+            parts = command.split()
+
+            setting = parts[1]
+            value = parts[2]
+
+            set_config(setting, value)
+
+
+        else:
+            print("Unknown config command")
+
 
 
 
@@ -40,7 +69,8 @@ func_dict = {
     "about": about,
     "calculator": calc,
     "system": system,
-    "files": file_manager
+    "files": file_manager,
+    "config": config
     
 
 }
