@@ -2,6 +2,7 @@ from tools.calculator import calc
 from tools.system import system
 from tools.file_manager import file_manager
 from tools.config_manager import show_config, set_config
+from tools.memory_manager import memory_menu
 #Command Functions
 
 def help(): 
@@ -13,7 +14,10 @@ def help():
         "calculator",
         "system",
         "files",
-        "config"
+        "config",
+        "memory"
+
+
         
 
 
@@ -70,7 +74,8 @@ func_dict = {
     "calculator": calc,
     "system": system,
     "files": file_manager,
-    "config": config
+    "config": config,
+    "memory": memory_menu
     
 
 }
