@@ -1,15 +1,23 @@
 from core.commands import execute_command
 from core.logger import log
+from tools.config_manager import load_config
 
 
-banner = """
+def create_banner():
+
+    config = load_config()
+
+    banner = f"""
 ====================================
           C Y P H E R // CORE
 ====================================
 
- Version: 0.1.0
+ User: {config["username"]}
+ Version: {config["version"]}
  Status: Online
  Mode: Terminal Assistant
+
+ Theme: {config["theme"]}
 
  Modules:
  [✓] Command Handler
@@ -17,6 +25,7 @@ banner = """
  [✓] Calculator
  [✓] System Monitor
  [✓] File Manager
+ [✓] Config Manager
 
  Type "help" for available commands.
  Enter "exit" to shutdown Cypher
@@ -24,8 +33,12 @@ banner = """
 ====================================
 """
 
+    return banner
+
 
 def main():
+    banner = create_banner()
+
     print(banner)
 
     log("Cypher started")

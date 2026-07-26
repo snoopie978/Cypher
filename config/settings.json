@@ -1,6 +1,6 @@
 {
-    "username": "Greg",
+    "username": "CypherUser",
     "version": "0.1.0",
     "logging": true,
-    "theme": "cyber"
+    "theme": "default"
 }
