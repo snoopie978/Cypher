@@ -1,44 +1,57 @@
-from tools.calculator import calc
-from tools.system import system
-from tools.file_manager import file_manager
 from tools.config_manager import show_config, set_config
-from tools.memory_manager import memory_menu
-#Command Functions
-
-def help(): 
-    commands = [
+from core.tool_loader import load_tools
 
 
-        "help",
-        "about",
-        "calculator",
-        "system",
-        "files",
-        "config",
-        "memory"
+# Load all tools automatically
+tools = load_tools()
 
 
-        
+# ==========================
+# Core Commands
+# ==========================
 
+def help():
 
-    ]
-
-    print("available commands are: ")
-    for cmd in commands:
-        print("")
-        
-        print(cmd)
-
-
-def  about():
     print("")
-    print("Cypher is gregs personal AI assistant")
+    print("====================================")
+    print("          CYPHER COMMANDS")
+    print("====================================")
+
+    print("")
+    print("Core Commands:")
+    print("")
+
+    print("help")
+    print("about")
+    print("config")
+    print("exit")
+
+
+    print("")
+    print("Tools:")
+    print("")
+
+    for tool in tools:
+        print(tool)
+
+
+    print("")
+    print("====================================")
+
+
+def about():
+
+    print("")
+    print("Cypher is Greg's personal AI assistant")
+    print("")
+
 
 def config():
 
     while True:
 
         command = input("Cypher Config > ")
+
 
         if command == "exit":
             break
@@ -62,26 +75,33 @@ def config():
             print("Unknown config command")
 
 
+# ==========================
+# Command Registry
+# ==========================
 
-
-
-
-
-#Command-Function dictionary
 func_dict = {
+
+    # Core commands
     "help": help,
     "about": about,
-    "calculator": calc,
-    "system": system,
-    "files": file_manager,
-    "config": config,
-    "memory": memory_menu
-    
+    "config": config
 
 }
-#Function to execute command function
+
+
+# Add discovered tools
+func_dict.update(tools)
+
+
+
+# ==========================
+# Command Executor
+# ==========================
+
 def execute_command(command):
+
     if command in func_dict:
         func_dict[command]()
+
     else:
         print("Unknown Command, enter 'help' to view commands")

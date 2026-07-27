@@ -1,14 +1,14 @@
 import json
 
+tool_name = "config"
+tool_description = "Manage Cypher settings"
 
 CONFIG_FILE = "config/settings.json"
 
 
 def load_config():
     with open(CONFIG_FILE, "r") as file:
-        config = json.load(file)
-
-    return config
+        return json.load(file)
 
 
 def save_config(config):
@@ -17,6 +17,7 @@ def save_config(config):
 
 
 def show_config():
+
     config = load_config()
 
     print("")
@@ -31,9 +32,11 @@ def show_config():
 
 
 def set_config(setting, value):
+
     config = load_config()
 
     if setting in config:
+
         config[setting] = value
         save_config(config)
 
@@ -41,3 +44,32 @@ def set_config(setting, value):
 
     else:
         print("Unknown setting")
+
+
+def run():
+
+    while True:
+
+        command = input("Cypher Config > ").strip()
+
+        if command == "exit":
+            break
+
+        elif command == "show":
+            show_config()
+
+        elif command.startswith("set "):
+
+            parts = command.split(maxsplit=2)
+
+            if len(parts) != 3:
+                print("Usage: set <setting> <value>")
+                continue
+
+            setting = parts[1]
+            value = parts[2]
+
+            set_config(setting, value)
+
+        else:
+            print("Unknown config command")

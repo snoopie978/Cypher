@@ -1,16 +1,19 @@
-def calc(): 
+tool_name = "calculator"
+
+
+def calc():
+
     def add(num1, num2):
-        result = num1 + num2
-        return result
+        return num1 + num2
+
     def sub(num1, num2):
-        diff = num1 - num2
-        return diff
-    def multiply(num1, num2): 
-        prod = num1 * num2
-        return prod
+        return num1 - num2
+
+    def multiply(num1, num2):
+        return num1 * num2
+
     def divide(num1, num2):
-        quote = num1 / num2
-        return quote
+        return num1 / num2
 
 
     math_dict = {
@@ -19,16 +22,20 @@ def calc():
         "multiply": multiply,
         "divide": divide
     }
-    print("")
-    calc_command = input("Cypher Calculator > ")
-    print("")
 
-    def execute_math(calc_command):
-        num1 = input("First number: ")
-        num2 = input("Second number: ")
-        if calc_command in math_dict:
-            result = math_dict[calc_command](int(num1), int(num2))
-            print(result)
-        else:
-            print("Unknown Command, enter 'help' to view commands")
-    execute_math(calc_command)
+
+    command = input("Cypher Calculator > ")
+
+    num1 = int(input("First number: "))
+    num2 = int(input("Second number: "))
+
+
+    if command in math_dict:
+        print(math_dict[command](num1, num2))
+
+    else:
+        print("Unknown calculation")
+
+
+def run():
+    calc()

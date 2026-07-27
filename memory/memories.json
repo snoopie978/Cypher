@@ -1,5 +1,10 @@
 {
     "memories": [
-        "Greg is the creator of Cypher"
+        {
+            "id": 1,
+            "memory": "Cypher was made by Greg",
+            "category": "Fact",
+            "date": "2026-07-26"
+        }
     ]
 }

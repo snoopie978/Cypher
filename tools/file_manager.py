@@ -1,49 +1,62 @@
 import os
 
+tool_name = "files"
+tool_description = "Browse and manage files"
+
 
 def show_location():
-    location = os.getcwd()
-
     print("")
     print("Current Directory:")
-    print(location)
+    print(os.getcwd())
 
 
 def list_files():
-    files = os.listdir()
 
     print("")
     print("Files:")
 
-    for file in files:
-        if os.path.isdir(file):
-            print("[DIR]", file)
+    for item in os.listdir():
+
+        if os.path.isdir(item):
+            print("[DIR] ", item)
+
         else:
-            print("[FILE]", file)
+            print("[FILE]", item)
 
 
 def change_directory(folder):
+
     if os.path.exists(folder):
+
         if os.path.isdir(folder):
+
             os.chdir(folder)
             print(f"Changed directory to: {folder}")
+
         else:
             print("That is not a folder")
+
     else:
         print("Folder does not exist")
 
-def go_back(): 
+
+def go_back():
+
     os.chdir("..")
+    print("Went back")
+
 
 def open_file(filename):
-    if os.path.exists(filename):
-        if os.path.isfile(filename):
-            try:
-                with open(filename, "r") as file:
-                    content = file.read()
 
-                print("")
-                print(content)
+    if os.path.exists(filename):
+
+        if os.path.isfile(filename):
+
+            try:
+
+                with open(filename, "r") as file:
+                    print("")
+                    print(file.read())
 
             except Exception as error:
                 print("Could not open file:", error)
@@ -54,16 +67,22 @@ def open_file(filename):
     else:
         print("File does not exist")
 
+
 def search_files(term):
+
     found = []
 
     for root, folders, files in os.walk(os.getcwd()):
+
         for file in files:
+
             if term.lower() in file.lower():
                 found.append(os.path.join(root, file))
 
+    print("")
+
     if found:
-        print("")
+
         print("Found:")
 
         for item in found:
@@ -73,8 +92,7 @@ def search_files(term):
         print("No files found")
 
 
-
-def file_manager():
+def run():
 
     print("")
     print("====================================")
@@ -83,38 +101,29 @@ def file_manager():
 
     while True:
 
-        command = input("\nCypher Files > ")
+        command = input("\nCypher Files > ").strip().lower()
 
         if command == "exit":
             print("Closing File Manager")
             break
 
-
         elif command == "location":
             show_location()
-
 
         elif command == "list":
             list_files()
 
-
-        elif command.startswith("cd "):
-            folder = command.replace("cd ", "")
-            change_directory(folder)
-
         elif command == "back":
             go_back()
-            print("Went back")
+
+        elif command.startswith("cd "):
+            change_directory(command[3:])
 
         elif command.startswith("open "):
-            filename = command.replace("open ", "")
-            open_file(filename)
-
+            open_file(command[5:])
 
         elif command.startswith("search "):
-            term = command.replace("search ", "")
-            search_files(term)
-
+            search_files(command[7:])
 
         else:
             print("Unknown command")
